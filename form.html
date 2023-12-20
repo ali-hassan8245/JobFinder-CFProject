@@ -1,21 +1,27 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Job Application Form</title>
-    <link rel="stylesheet" href="form.css" />
-  </head>
-  <body>
-    <div class="container">
-      <div class="apply_box">
-        <h1>
-          Job Application
-          <span class="title_small">(CF project)</span>
-        </h1>
-        <form name="submit-to-google-sheet">
-          <div class="form_container">
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Job Application Form</title>
+  <link rel="stylesheet" href="form.css" />
+<link rel="stylesheet" href="homebutton.css">
+</head>
+<body>
+<a id="home-button" href="index.html">
+        Home
+    </a>
+  <div class="container">
+    <div class="apply_box">
+      <h1>
+        Job Application
+        <span class="title_small">(CF project)</span>
+      </h1>
+      <form name="submit-to-google-sheet">
+
+
+        <div class="form_container">
             <div class="form_control">
               <label for="first_name"> First Name </label>
               <input
@@ -83,32 +89,65 @@
               <input type="file" id="upload" name="upload" required />
             </div>
           </div>
-          <div class="button_container">
-            <button type="submit">Apply Now</button>
-            <span id="success"></span>
-          </div>
-        </form>
-
-<script>
-  const scriptURL = 'https://script.google.com/macros/s/AKfycbz-C9-1HL7e6bZxzbk9vWV2b7CLpvvUjRtdhx5PQQhqCYcFTUT6WlshWrgdasOev8s/exec'
-  const form = document.forms['submit-to-google-sheet']
-  const success = document.getElementById('success');
-  form.addEventListener('submit', e => {
-    e.preventDefault()
-    fetch(scriptURL, { method: 'POST', body: new FormData(form)})
-      .then(response => {
-       success.innerHTML="Applying Successfully :)"
-       setTimeout(function()
-        {
-            success.innerHTML=""
-        },3000)
-        form.reset();
-      })
-      .catch(error => console.error('Error!', error.message))
-  })
-</script>
-
+        <div class="button_container">
+          <button type="submit">Apply Now</button>
+        </div>
+      </form>
+      <div id="popup" class="popup">
+        <span class="popup-content" id="success"></span>
       </div>
     </div>
-  </body>
+  </div>
+
+  <script>
+    const scriptURL = 'https://script.google.com/macros/s/AKfycbz-C9-1HL7e6bZxzbk9vWV2b7CLpvvUjRtdhx5PQQhqCYcFTUT6WlshWrgdasOev8s/exec'
+    const form = document.forms['submit-to-google-sheet']
+    const successPopup = document.getElementById('popup');
+    const successMessage = document.getElementById('success');
+
+    form.addEventListener('submit', e => {
+      e.preventDefault()
+      fetch(scriptURL, { method: 'POST', body: new FormData(form) })
+        .then(response => {
+          if (response.ok) {
+            successMessage.innerHTML = "Application submitted successfully!";
+            successPopup.style.display = "block";
+            setTimeout(function () {
+              successPopup.style.display = "none";
+              successMessage.innerHTML = "";
+            }, 3000);
+            form.reset();
+          } else {
+            successMessage.innerHTML = "Error submitting application. Please try again.";
+          }
+        })
+        .catch(error => {
+          console.error('Error!', error.message)
+          successMessage.innerHTML = "Error submitting application. Please try again.";
+        });
+    });
+  </script>
+
+  <style>
+    /* Your CSS styles here */
+
+    .popup {
+      display: none;
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background-color: #f1f1f1;
+      padding: 20px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      z-index: 1;
+      box-shadow: 4px 3px 5px rgba(1, 1, 1, 0.4);
+    }
+
+    .popup-content {
+      font-size: 16px;
+    }
+  </style>
+</body>
 </html>

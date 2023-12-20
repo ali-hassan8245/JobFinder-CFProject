@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Feedback Page</title>
+<link rel="stylesheet" href="homebutton.css">
     <style>
         body {
             color: #0E81EC;
@@ -13,10 +14,11 @@
             justify-content: center;
             height: 100vh;
             margin: 0;
-background-image: url('image_search_1700758630311.png');
-background-repeat:no-repeat;
-background-size:cover;
+            background-image: url('image_search_1700758630311.png');
+            background-repeat: no-repeat;
+            background-size: cover;
         }
+
         .feedback-container {
             padding: 10px;
             border: 1.5px solid black;
@@ -24,14 +26,89 @@ background-size:cover;
             max-width: 500px;
             margin: auto;
             display: flex;
+            flex-direction: column;
             background-color: rgba(255, 255, 255, 1);
-            box-shadow: 0 5px 10px rgba(0,0,0,0.7);
+            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.7);
+        }
+
+        .stars-container {
+            display: flex;
+            justify-content: center;
+            margin-top: 10px;
+        }
+
+        .star {
+            font-size: 24px;
+            cursor: pointer;
+            transition: color 0.2s;
+        }
+
+        .star:hover {
+            color: gold;
         }
     </style>
 </head>
 <body>
-    <div class="feedback-container">
-        <h2>LOL--- We don't need your feedback :)</h2>
+<script>
+
+    setTimeout(function () {
+        askFeedbackType();
+    }, 5000);
+
+    function askFeedbackType() {
+        var feedbackType = prompt("Just Kidding:)\nPlease provide your valuable feedback...\nEnter 'star' for star rating or anything else for text feedback:");
+
+        if (feedbackType && feedbackType.toLowerCase() === 'star') {
+            showStarRating();
+        } else {
+            showTextFeedback();
+        }
+    }
+
+    function showStarRating() {
+        var feedbackContainer = document.querySelector(".feedback-container");
+        feedbackContainer.style.display = "flex";
+
+        var starsContainer = document.querySelector(".stars-container");
+        starsContainer.style.display = "flex";
+    }
+
+    function showTextFeedback() {
+        var feedbackContainer = document.querySelector(".feedback-container");
+        feedbackContainer.style.display = "flex";
+
+        var feedback = prompt("Please provide your feedback:");
+
+        // You can now handle the text feedback as needed
+        if (feedback !== null) {
+            alert("Text Feedback submitted: " + feedback);
+            // Add additional logic to process or store the text feedback
+        }
+        
+        // Close the feedback container if needed
+        feedbackContainer.style.display = "none";
+    }
+
+    function rateStars(starCount) {
+        alert("You rated with " + starCount + " stars!");
+        // Add additional logic to process or store the star rating
+        // Close the feedback container if needed
+        document.querySelector(".feedback-container").style.display = "none";
+    }
+</script>
+<a id="home-button" href="index.html">
+        Home
+    </a>
+<div class="feedback-container">
+    <h2>LOL--- We don't need your feedback :)</h2>
+    <div class="stars-container" style="display: none;">
+        <span class="star" onclick="rateStars(1)">★</span>
+        <span class="star" onclick="rateStars(2)">★</span>
+        <span class="star" onclick="rateStars(3)">★</span>
+        <span class="star" onclick="rateStars(4)">★</span>
+        <span class="star" onclick="rateStars(5)">★</span>
     </div>
+</div>
+
 </body>
 </html>

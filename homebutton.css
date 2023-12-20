@@ -1,0 +1,36 @@
+#home-button {
+    color: #000000;
+            position: fixed;
+            top: 10px;
+            left: 5px;
+            background-color: #ffffff00; /* Default button color */
+            padding: 7px 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            text-decoration: none;
+        }
+
+        #home-button:hover {
+            background-color: #2888e1; /* Button color on hover */
+        }
+
+
+#contactus-button {
+    color: #000000;
+            position: fixed;
+            top: 10px;
+            right: 5px;
+            background-color: #ffffff00; /* Default button color */
+            padding: 7px 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            text-decoration: none;
+        }
+
+        #contactus-button:hover {
+            background-color: #2888e1; /* Button color on hover */
+        }
