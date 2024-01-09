@@ -1,14 +1,51 @@
 <!DOCTYPE html>
-<!-- Created By CodingNepal -->
 <html lang="en" dir="ltr">
    <head>
       <meta charset="utf-8">
-          <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
       <title>About us</title>
       <link rel="stylesheet" href="about.css">
 <link rel="stylesheet" href="homebutton.css">
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
-   </head>
+
+<style>
+ @media only screen and (max-width: 550px) {
+  
+#contactus-button {
+    color: #000000;
+            position: fixed;
+            top: 10px;
+            right: 1S0px;
+            background-color: #ffffff00; /* Default button color */
+            padding: 7px 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            text-decoration: none;
+        }
+
+        #contactus-button:hover {
+            background-color: #2888e1; /* Button color on hover */
+        }
+
+
+
+
+
+
+  .wrapper {
+    display: flex; /* Change to block for better responsiveness */
+    text-align: center; /* Center the icons in smaller screens */
+  }
+
+  .wrapper .icon {
+    margin: 10px ; /* Add some margin between icons in smaller screens */
+  }
+}
+</style>
+
+</head>
    <body>
       <a id="home-button" href="index.html">
         Home
